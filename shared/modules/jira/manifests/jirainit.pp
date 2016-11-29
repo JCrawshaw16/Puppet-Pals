@@ -1,10 +1,10 @@
 class jira {
 	Exec {
-		path => "/usr/bin", "/bin", "/usr/sbin"
+		path => ["/usr/bin", "/bin", "/usr/sbin"]
 	}
 	
 	exec { 'copy jira bin' :
-		command => 'sudo cp /usr/share/jira.bin /opt'
+		command => 'sudo cp /tmp/shared/jira.bin /opt'
 	}
 	
 	exec { 'change permissions' :
