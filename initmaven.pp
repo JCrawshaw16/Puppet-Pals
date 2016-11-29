@@ -1,7 +1,7 @@
 class maven (
 	$mvn_archive = "maven.tar.gz",
 	$mvn_folder = "apache-maven-3.3.9",
-	$mvn_home = "/opt/apache-maven-3.3.9/",
+	$mvn_home = "/opt/apache-maven-3.3.9",
 	$shared = "/tmp/shared/") {
 
 	require java
@@ -21,10 +21,10 @@ class maven (
 		require => Exec["extract maven"],
 	}
 
-	exec { "export maven":
-		cwd => "/tmp/shared",
-		provider => shell,
-		command => "./mvn.sh",
+	exec {"update maven":
+		cwd => "${mvn_home}",
+		command => "sudo update-alternatives --install /usr/bin/mvn mvn ${mvn_home}/bin/mvn 100",
 		require => Exec["copy maven"],
 	}
+
 }
