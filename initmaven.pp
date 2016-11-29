@@ -25,6 +25,7 @@ class maven (
 		cwd => "${mvn_home}",
 		command => "sudo update-alternatives --install /usr/bin/mvn mvn ${mvn_home}/bin/mvn 100",
 		require => Exec["copy maven"],
+		onlyif => "! mvn -v",
 	}
 
 }
