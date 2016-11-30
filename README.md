@@ -22,3 +22,8 @@ Edit the ip addresses in the vagrantfile as required
 You are now ready to run 'vagrant up'
 There may be problem with the network, if this occurs destroy the virtual machines with 'vagrant destroy' and wait a little while before trying vagrant up again
 If this problem persists, consult dev; he knows (maybe, tell him not to lie)
+
+## Potential problems
+Some major errors you may encounter are:
+- The IP address may change upon installation when 'vagrant up' is run. This affects the setup of Jira, so to fix this, locate the agent that Jira lies on, open terminal and type in command 'facter ipaddress_eth1'. Using the IP address returned from the command, you use that IP address, enter it into your URL on your web browser, followed by ':8081' which is the port that Jira is connected to. This should open up Jira for you to use.
+- Major network issues reassigning random IP addresses to agents; may need to run 'ifconfig ipaddress_eth1' to find actual IP address
