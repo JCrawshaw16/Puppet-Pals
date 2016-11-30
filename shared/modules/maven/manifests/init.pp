@@ -13,21 +13,21 @@ class maven (
 	exec { "extract maven":
 		cwd => "${shared}",
 		command => "tar zxfv ${mvn_archive}",
-		onlyif => "! mvn -version",
+		#onlyif => "! mvn -version",
 	}
 
 	exec { "copy maven":
 		cwd => "${shared}",
 		command => "sudo cp -r ${mvn_folder} /opt/",
 		require => Exec["extract maven"],
-		onlyif => "! mvn -version",
+		#onlyif => "! mvn -version",
 	}
 
 	exec {"update maven":
 		cwd => "${mvn_home}",
 		command => "sudo update-alternatives --install /usr/bin/mvn mvn ${mvn_home}/bin/mvn 100",
 		require => Exec["copy maven"],
-		onlyif => "! mvn -version",
+		#onlyif => "! mvn -version",
 	}
 
 }

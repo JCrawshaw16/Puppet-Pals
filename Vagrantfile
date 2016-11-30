@@ -3,12 +3,12 @@
 ##################################################################
 ###Set domain names and ipaddress's for master and agents#########
 ##################################################################
-MASTER_DN = "jcmaster.qac.local"
-agDN1 = "jcagent1.qac.local"
+MASTER_DN = "pimaster.qac.local"
+agDN1 = "piagent1.qac.local"
 agDN2 = "jcagent2.qac.local"
 agDN3 = "jcagent3.qac.local"
-MASTER_IP = "192.168.1.75"
-agIP1 = "192.168.1.76"
+MASTER_IP = "192.168.1.72"
+agIP1 = "192.168.1.73"
 agIP2 = "192.168.1.77"
 agIP3 = "192.168.1.78"
 
@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
             agentVM.cpus = 2
         end
     end
-	
+
 	config.vm.define "agent3" do |agent3|
         agent3.vm.hostname = agDN3
         agent3.vm.network :public_network, ip: agIP3
