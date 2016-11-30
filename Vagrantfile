@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "master" do |master|
         master.vm.hostname = MASTER_DN
         master.vm.network :public_network, ip: MASTER_IP
-        master.vm.provision :shell, path: "bootstrap_master.sh", env: {"MASTER_IP" => MASTER_IP, "MASTER_DN" => MASTER_DN}
+        master.vm.provision :shell, path: "bootstrap_master.sh", env: {"MASTER_IP" => MASTER_IP, "MASTER_DN" => MASTER_DN, "agDN1" => agDN1, "agDN2" => agDN2, "agDN3" => agDN3}
 		
         master.vm.provider :virtualbox do |masterVM|
             masterVM.gui = true
@@ -45,29 +45,29 @@ Vagrant.configure("2") do |config|
         end
     end
     
-	#config.vm.define "agent2" do |agent2|
-     #   agent2.vm.hostname = agDN2
-      #  agent2.vm.network :public_network, ip: agIP2
-       # agent2.vm.provision :shell, path: "bootstrap_agent.sh", env: {"MASTER_IP" => #MASTER_IP, "MASTER_DN" => MASTER_DN}
-        #agent2.vm.provider :virtualbox do |agentVM|
-         #   agentVM.gui = true
-          #  agentVM.name = "agent2"
-           # agentVM.memory = 4096
-            #agentVM.cpus = 2
-        #end
-    #end
+	config.vm.define "agent2" do |agent2|
+        agent2.vm.hostname = agDN2
+        agent2.vm.network :public_network, ip: agIP2
+        agent2.vm.provision :shell, path: "bootstrap_agent.sh", env: {"MASTER_IP" => MASTER_IP, "MASTER_DN" => MASTER_DN}
+        agent2.vm.provider :virtualbox do |agentVM|
+            agentVM.gui = true
+            agentVM.name = "agent2"
+            agentVM.memory = 4096
+            agentVM.cpus = 2
+        end
+    end
 	
-	#config.vm.define "agent3" do |agent3|
-     #   agent3.vm.hostname = agDN3
-      #  agent3.vm.network :public_network, ip: agIP3
-       # agent3.vm.provision :shell, path: "bootstrap_agent.sh", env: {"MASTER_IP" => #MASTER_IP, "MASTER_DN" => MASTER_DN}
-        #agent3.vm.provider :virtualbox do |agentVM|
-         #   agentVM.gui = true
-          #  agentVM.name = "agent3"
-          #  agentVM.memory = 4096
-           # agentVM.cpus = 2
-        #end
-    #end
+	config.vm.define "agent3" do |agent3|
+        agent3.vm.hostname = agDN3
+        agent3.vm.network :public_network, ip: agIP3
+        agent3.vm.provision :shell, path: "bootstrap_agent.sh", env: {"MASTER_IP" => MASTER_IP, "MASTER_DN" => MASTER_DN}
+        agent3.vm.provider :virtualbox do |agentVM|
+            agentVM.gui = true
+            agentVM.name = "agent3"
+            agentVM.memory = 4096
+            agentVM.cpus = 2
+        end
+    end
 	
 	
 end

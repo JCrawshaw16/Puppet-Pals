@@ -34,8 +34,9 @@ sudo sed -i "2s/^/server=$MASTER_DN\n/" /etc/puppet/puppet.conf
 
 ###Request certificates###
 
-sudo puppet agent --test --server="$MASTER_DN"
+sudo puppet agent --test --server=$MASTER_DN
 sudo puppet agent --enable
+sudo puppet agent --test --server=$MASTER_DN
 
 
 
